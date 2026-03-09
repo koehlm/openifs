@@ -32,10 +32,10 @@ set -eu -o pipefail
 #==========================================================================
 
 
-# define logging helper
+#  Define logging helper
 log_err()  { echo -e "[OpenIFS ERROR] $*" >&2; }
 
-# set OpenIFS platform environment:
+#  Set OpenIFS platform environment:
 PLATFORM_CFG="/path/to/your/config/oifs-config.edit_me.sh"
 if [ ! -f "${PLATFORM_CFG}" ]; then
    log_err "platform config file ${PLATFORM_CFG} NOT found - EXITING"
@@ -45,7 +45,17 @@ else
    source ${PLATFORM_CFG}
 fi
 
-# config file specific to this experiment:
+#  Verify experiment directory path is set:
+if [[ ! -d "${OIFS_EXPT_DIR:-}" || ! -x "${OIFS_EXPT_DIR:-}" ]]; then
+    export OIFS_EXPT_DIR="$(pwd)"
+else
+    export OIFS_EXPT_DIR
+fi
+
+echo "changing into experiment directory: ${OIFS_EXPT_DIR}"
+cd "${OIFS_EXPT_DIR}" || true
+
+#  Config file specific to this experiment:
 EXP_CFG="exp-config.h"
 if [ ! -f "${EXP_CFG}" ]; then
    log_err "experiment config file ${EXP_CFG} NOT found - EXITING"
@@ -98,7 +108,12 @@ env | grep -i slurm
 #  Make sure process stack limit is increased
 ulimit -s unlimited
 
-./oifs-run
+#  Local copy of oifs-run has precedence
+if [ -f "./oifs-run" ]; then
+   ./oifs-run
+else
+   ${OIFS_RUN_SCRIPT}/oifs-run
+fi
 
 exit 0
 

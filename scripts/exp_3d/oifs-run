@@ -206,6 +206,12 @@ export NUNDEFLD=-99999
 # --- Evaluate input arguments ----------------------------------------
 
 
+# check OIFS_EXPT_DIR is set and valid, otherwise use current directory:
+if [ ! -d "${OIFS_EXPT_DIR:-}" ] || [ ! -x "${OIFS_EXPT_DIR:-}" ]; then
+    OIFS_EXPT_DIR="$(pwd)"
+fi
+cd ${OIFS_EXPT_DIR} || true
+
 # check existence of input arguments, either via config file or arguments
 if [ "$#" -eq 0 ] && [ ! -f ${EXP_CFG} ]; then
   echo -e "\n!!! WARNING: No ${EXP_CFG} file found and no arguments supplied !!!!"
@@ -245,7 +251,7 @@ esac
 #  (this is a simple check - does not check for valid GRIB file)
 if [ ! -s "ICMSH${OIFS_EXPID}INIT" ]; then
    echo "[ERROR] Could not find spectral initial file: ICMSH${OIFS_EXPID}INIT."
-   echo "This command should be run in the experiment directory."
+   echo "Ensure OIFS_EXPT_DIR is set correctly to the experiment directory."
    exit 1
 fi
 
