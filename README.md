@@ -186,14 +186,13 @@ cd ${OIFS_DATA_DIR}/ifsdata
 wget https://openifs.ecmwf.int/data/ifsdata/48r1/ifsdata/ifsdata.tar.gz
 tar -xvzf ifsdata.tar.gz
 
-# Step 4 - Download and extract resolution-dependent data files:
+# Step 4 - Download and extract resolution-dependent data files (here for T159):
 cd ${OIFS_DATA_DIR}/climate.v020
 wget https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/48r1_climate.v020_159.tar.gz
 tar -xvzf 48r1_climate.v020_159.tar.gz
-
-# You should repeat Step 4 for all additional grid resolutions that you intend to use.
-# Browse available resolutions here: https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/
 ```
+
+You should repeat the final Step 4 above for all additional grid resolutions that you intend to use. Browse all available grid resolutions here: https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/
 
 ## Run a standard OpenIFS 3-D NWP experiment
 
