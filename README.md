@@ -169,7 +169,7 @@ Create the required directory structure, then download and install the static fi
 
 ```
 # Always do this first:
-source </path/to/installtion>/oifs-config.edit_me.sh
+source </path/to/installation>/oifs-config.edit_me.sh
 
 # Step 1 - Create the directory structure for static files:
 mkdir -p $OIFS_DATA_DIR
@@ -177,17 +177,17 @@ cd $OIFS_DATA_DIR
 mkdir -p ifsdata rtables climate.v020
 
 # Step 2 - Download and extract radiation table files:
-cd ../rtables
+cd ${OIFS_DATA_DIR}/rtables
 wget https://openifs.ecmwf.int/data/ifsdata/48r1/rtables/rtables.tar.gz
 tar -xvzf rtables.tar.gz
 
 # Step 3 - Download and extract resolution-independent data files:
-cd ifsdata
+cd ${OIFS_DATA_DIR}/ifsdata
 wget https://openifs.ecmwf.int/data/ifsdata/48r1/ifsdata/ifsdata.tar.gz
 tar -xvzf ifsdata.tar.gz
 
 # Step 4 - Download and extract resolution-dependent data files:
-cd ../climate.v020
+cd ${OIFS_DATA_DIR}/climate.v020
 wget https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/48r1_climate.v020_159.tar.gz
 tar -xvzf 48r1_climate.v020_159.tar.gz
 
