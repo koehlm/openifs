@@ -1,3 +1,7 @@
+<p align="center">
+<img width="300" height="90" alt="OpenIFS logo" src="https://github.com/user-attachments/assets/89fe6bc1-069d-4665-b865-d0e0457038fc" />
+</p>
+
 
 # ECMWF OpenIFS
 
@@ -165,7 +169,7 @@ Create the required directory structure, then download and install the static fi
 
 ```
 # Always do this first:
-source </path/to/installtion>/oifs-config.edit_me.sh
+source </path/to/installation>/oifs-config.edit_me.sh
 
 # Step 1 - Create the directory structure for static files:
 mkdir -p $OIFS_DATA_DIR
@@ -173,23 +177,22 @@ cd $OIFS_DATA_DIR
 mkdir -p ifsdata rtables climate.v020
 
 # Step 2 - Download and extract radiation table files:
-cd ../rtables
+cd ${OIFS_DATA_DIR}/rtables
 wget https://openifs.ecmwf.int/data/ifsdata/48r1/rtables/rtables.tar.gz
 tar -xvzf rtables.tar.gz
 
 # Step 3 - Download and extract resolution-independent data files:
-cd ifsdata
+cd ${OIFS_DATA_DIR}/ifsdata
 wget https://openifs.ecmwf.int/data/ifsdata/48r1/ifsdata/ifsdata.tar.gz
 tar -xvzf ifsdata.tar.gz
 
-# Step 4 - Download and extract resolution-dependent data files:
-cd ../climate.v020
+# Step 4 - Download and extract resolution-dependent data files (here for T159):
+cd ${OIFS_DATA_DIR}/climate.v020
 wget https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/48r1_climate.v020_159.tar.gz
 tar -xvzf 48r1_climate.v020_159.tar.gz
-
-# You should repeat Step 4 for all additional grid resolutions that you intend to use.
-# Browse available resolutions here: https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/
 ```
+
+You should repeat the final Step 4 above for all additional grid resolutions that you intend to use. Browse all available grid resolutions here: https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/
 
 ## Run a standard OpenIFS 3-D NWP experiment
 
