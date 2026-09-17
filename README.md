@@ -170,34 +170,34 @@ OpenIFS requires **static input data** to run forecast experiments. Many of thes
 Create the required directory structure, then download and install the static files by following these steps:
 
 ```
-# Always do this first:
-source </path/to/installation>/oifs-config.edit_me.sh
+# Replace this path with the actual installation path.
+source "/path/to/installation/oifs-config.edit_me.sh"
 
-# Note: The instructions shown here are for model cycle 48r1 and climate version v020.
-# When using later model cycles consult the release notes for the appropriate climate version.
+# Step 1: Create the directory structure for static files.
+mkdir -p \
+  "$OIFS_DATA_DIR/ifsdata" \
+  "$OIFS_DATA_DIR/rtables" \
+  "$OIFS_DATA_DIR/$OIFS_CLIMATE"
 
-# Step 1 - Create the directory structure for static files:
-mkdir -p $OIFS_DATA_DIR
-cd $OIFS_DATA_DIR
-mkdir -p ifsdata rtables climate.v020
-
-# Step 2 - Download and extract radiation table files:
-cd ${OIFS_DATA_DIR}/rtables
-wget https://openifs.ecmwf.int/data/ifsdata/48r1/rtables/rtables.tar.gz
+# Step 2: Download and extract radiation table files.
+cd "$OIFS_DATA_DIR/rtables"
+wget "https://openifs.ecmwf.int/data/ifsdata/$OIFS_CYCLE/rtables/rtables.tar.gz"
 tar -xvzf rtables.tar.gz
 
-# Step 3 - Download and extract resolution-independent data files:
-cd ${OIFS_DATA_DIR}/ifsdata
-wget https://openifs.ecmwf.int/data/ifsdata/48r1/ifsdata/ifsdata.tar.gz
+# Step 3: Download and extract resolution-independent data files.
+cd "$OIFS_DATA_DIR/ifsdata"
+wget "https://openifs.ecmwf.int/data/ifsdata/$OIFS_CYCLE/ifsdata/ifsdata.tar.gz"
 tar -xvzf ifsdata.tar.gz
 
-# Step 4 - Download and extract resolution-dependent data files (here for T159):
-cd ${OIFS_DATA_DIR}/climate.v020
-wget https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/48r1_climate.v020_159.tar.gz
-tar -xvzf 48r1_climate.v020_159.tar.gz
+# Step 4: Download and extract resolution-dependent data files (here for T159).
+cd "$OIFS_DATA_DIR/$OIFS_CLIMATE"
+archive="${OIFS_CYCLE}_${OIFS_CLIMATE}_159.tar.gz"
+
+wget "https://openifs.ecmwf.int/data/ifsdata/$OIFS_CYCLE/$OIFS_CLIMATE/$archive"
+tar -xvzf "$archive"
 ```
 
-You should repeat the final Step 4 above for all additional grid resolutions that you intend to use. Browse all available grid resolutions here: https://openifs.ecmwf.int/data/ifsdata/48r1/climate.v020/
+You should repeat the final Step 4 above for all additional grid resolutions that you intend to use. Browse all available grid resolutions here: https://openifs.ecmwf.int/data/ifsdata/${OIFS_CYCLE}/${OIFS_CLIMATE}/
 
 ## Run a standard OpenIFS 3-D NWP experiment
 
