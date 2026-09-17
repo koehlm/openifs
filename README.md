@@ -162,16 +162,19 @@ The previous section, [Installing and Building OpenIFS](#installing-and-building
 
 ## Install the static input data files for OpenIFS
 
-OpenIFS requires **static input data** to run forecast experiments. Many of these static data files **are specific for** the respective **model cycle**.
+OpenIFS requires **static input data** to run forecast experiments. Many of these static data files **are specific for** the respective **model cycle**. Please see the **release notes** for the respective model cycle to find the corresponding **climate version**.
 
 * This static data needs to be found at the `$OIFS_DATA_DIR` location.
-* As a minimum you will require the packages `rtables.tar.gz` and `ifsdata.tar.gz` and **at least one** of the packages for a specific horizontal grid resolution (e.g. `48r1_climate.v020_159.tar.gz` for T159).
+* As a minimum you will require the packages `rtables.tar.gz` and `ifsdata.tar.gz` and **at least one** of the packages for a specific horizontal grid resolution (e.g. `48r1_climate.v020_159.tar.gz` for T159 at model cycle 48r1 using climate version v020).
 
 Create the required directory structure, then download and install the static files by following these steps:
 
 ```
 # Always do this first:
 source </path/to/installation>/oifs-config.edit_me.sh
+
+# Note: The instructions shown here are for model cycle 48r1 and climate version v020.
+# When using later model cycles consult the release notes for the appropriate climate version.
 
 # Step 1 - Create the directory structure for static files:
 mkdir -p $OIFS_DATA_DIR
