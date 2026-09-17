@@ -1,5 +1,5 @@
 <p align="center">
-<img width="300" height="90" alt="OpenIFS logo" src="https://github.com/user-attachments/assets/89fe6bc1-069d-4665-b865-d0e0457038fc" />
+<img width="300" height="90" alt="OpenIFS logo" src="docs/img/openifs-logo.png" />
 </p>
 
 
