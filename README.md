@@ -207,13 +207,14 @@ Here follows a step-by-step guide on how to run a global forecast experiment. A 
 
 An **example forecast experiment** has been prepared. You will need to download the **experiment data pack** matching your model cycle. We recommend selecting the N80 (T159) model grid.
 
-A listing of the experiments is shown in the table *Available OpenIFS Experiments* on this [ECMWF Confluence Wiki page](https://confluence.ecmwf.int/spaces/OIFS/pages/439590634/Extratropical+transition+of+Tropical+Storm+Karl+-+September+2016#ExtratropicaltransitionofTropicalStormKarlSeptember2016-AvailableOpenIFSExperiments). All experiments have a four-character alphanumeric identifier.
+* A listing of the experiments is shown in the table *Available OpenIFS Experiments* on this [ECMWF Confluence Wiki page](https://confluence.ecmwf.int/spaces/OIFS/pages/439590634/Extratropical+transition+of+Tropical+Storm+Karl+-+September+2016#ExtratropicaltransitionofTropicalStormKarlSeptember2016-AvailableOpenIFSExperiments).
+* All experiments have a four-character alphanumeric identifier which we will refer to as `<experiment-id>` in the documentation below.
 
-> **Example:** For model cycle 48r1 the N80/T159 experiment is called `ab7z` and you can download the data pack directly from the web link in the table above or from [this download site](https://openifs.ecmwf.int/data/experiments/2016-09_Karl/).
+> **Example:** For model cycle 48r1 the N80/T159 experiment has the experiment-id `ab7z` and you can download the data pack tarball directly from the web link in the above mentioned ECMWF Confluence table or directly from [this download site](https://openifs.ecmwf.int/data/experiments/2016-09_Karl/) in subdirectory `48r1`.
 
 
 * Set variable `OIFS_EXPT` in `oifs-config.edit_me.sh` to point to a suitable location path for your model experiment and extract the experiment data package.
-* Copy the model run scripts into the experiment directory.
+* Copy the model run scripts and experiment configuration file into the experiment directory.
 
 To carry out the above steps, run the following commands in your terminal:
 
@@ -223,7 +224,8 @@ source "/path/to/installation/oifs-config.edit_me.sh"
 
 cd $OIFS_EXPT
 
-# Replace the download URL in the next command with the link to your experiment pack:
+# Replace the download URL in the next command with the link to your experiment pack,
+# ensuring it ends with the correct experiment-id tarball:
 wget <download-url>/<experiment-id>.tar.gz
 
 # Extract the experiment data pack and change into the experiment directory;
